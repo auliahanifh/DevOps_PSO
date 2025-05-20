@@ -13,7 +13,6 @@ jobs:
       mysql:
         image: mysql:8
         env:
-          MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: keranjangbelanja
         ports:
           - 3306:3306
