@@ -13,7 +13,7 @@ jobs:
       mysql:
         image: mysql:8
         env:
-          MYSQL_DATABASE: keranjangbelanja
+          MYSQL_DATABASE: trial_laravel
         ports:
           - 3306:3306
         options: >-
