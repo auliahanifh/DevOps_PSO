@@ -15,19 +15,19 @@
           <!-- Links -->
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="http://127.0.0.1:8000/">Home</a>
+              <a class="nav-link" href="http://127.0.0.1:8000/cart">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="http://127.0.0.1:8000/">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="http://127.0.0.1:8000/cart">Management</a>
+                <a class="nav-link" href="#">Product</a>
               </li>
           </ul>
         </div>
     </nav>
     <div class="container">
-        <h2> Product Management </h2>
+        <h2>Product Data Console</h2>
         <h3>@yield('test1')</h3>
 
         @yield('link1')

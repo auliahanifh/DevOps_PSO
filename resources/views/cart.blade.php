@@ -1,5 +1,7 @@
 @extends('template')
 
+@section('test1', 'PT. XYZ')
+
 @section('link1')
     <a href="/cart/add" class="btn btn-primary"> + Add Product</a>
 @endsection
@@ -20,7 +22,7 @@
 
     <table class="table table-striped table-hover">
         <tr>
-            <th>Purchase Code</th>
+            <th>ID</th>
             <th>Product Code</th>
             <th>Amount</th>
             <th>Price</th>
