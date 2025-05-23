@@ -18,13 +18,7 @@
               <a class="nav-link" href="http://127.0.0.1:8000/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Export</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Soft Delete</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Restore</a>
+              <a class="nav-link" href="#">Logs</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Setting</a>
