@@ -20,6 +20,7 @@ services:
             IGNITION_LOCAL_SITES_PATH: '${PWD}'
         volumes:
             - '.:/var/www/html'
+            - './trial_laravel.sql:/docker-entrypoint-initdb.d/init.sql'
         networks:
             - sail
         depends_on:
