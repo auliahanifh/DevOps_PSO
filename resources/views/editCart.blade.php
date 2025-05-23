@@ -3,12 +3,12 @@
 @section('test1', 'Edit Product')
 
 @section('link1')
-<a href="/cart">Back</a>
+<a href="/">Back</a>
 @endsection
 
 @section('konten')
     @foreach($keranjangbelanja as $cart)
-	<form action="/cart/update" method="POST">
+	<form action="/update" method="POST">
 		{{ csrf_field() }}
 
         <input type="hidden" name="ID" id="ID" value="{{ $cart-> ID}}">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>CRUD App</title>
+  <title>Product Data Console</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -15,13 +15,19 @@
           <!-- Links -->
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="http://127.0.0.1:8000/cart">Home</a>
+              <a class="nav-link" href="http://127.0.0.1:8000/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://127.0.0.1:8000/">About</a>
+              <a class="nav-link" href="#">Export</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Product</a>
+              <a class="nav-link" href="#">Soft Delete</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Restore</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Setting</a>
               </li>
           </ul>
         </div>

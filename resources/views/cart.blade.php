@@ -3,21 +3,25 @@
 @section('test1', 'PT. XYZ')
 
 @section('link1')
-    <a href="/cart/add" class="btn btn-primary"> + Add Product</a>
+    <a href="/add" class="btn btn-primary"> + Add Product</a>
 @endsection
 
 @section('konten')
-	<form action="/cart/search" method="GET">
-        <div class="row mb-3">
-            <label for="nama" class="col-sm-2 col-form-label">Product</label>
-            <div class="col-sm-6">
-                <input type="text" name="cari" class="form-control" id="cari" placeholder="Search .." value="{{ request('cari') }}">
-            </div>
-            <div class="col-sm-4">
-                <input type="submit" class="btn btn-success">
-            </div>
+	<form method="GET" action="{{ url('/search') }}">
+    <div class="row mb-3 align-items-end">
+        <div class="col-md-6">
+            <label for="search" class="form-label">Search</label>
+            <input type="text" id="search" name="search" value="{{ $search ?? '' }}" class="form-control" placeholder="Search">
         </div>
-	</form>
+        <div class="col-md-3">
+            <label for="pagination" class="form-label">Items per page</label>
+            <input type="number" id="pagination" name="pagination" value="{{ $keranjangbelanja->perPage() }}" class="form-control" min="1" max="100">
+        </div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-success w-100">Submit</button>
+        </div>
+    </div>
+    </form>
     <br>
 
     <table class="table table-striped table-hover">
@@ -41,8 +45,8 @@
                 Rp{{ number_format($cart->Jumlah * $cart->Harga) }}
             </td>
             <td class="text-left">
-                <a href="/cart/edit/{{ $cart->ID }}" class="btn btn-info btn-icon">Edit</a>
-                <a href="/cart/delete/{{ $cart->ID }}" class="btn btn-danger">Delete</a>
+                <a href="/edit/{{ $cart->ID }}" class="btn btn-info btn-icon">Edit</a>
+                <a href="/delete/{{ $cart->ID }}" class="btn btn-danger">Delete</a>
             </td>
         </tr>
         @endforeach

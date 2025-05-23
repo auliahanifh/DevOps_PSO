@@ -13,22 +13,26 @@ class CartController extends Controller
     }
 
     public function search(Request $request){
-        $search = $request->search;
-        $pagination = $request->query('pagination',20);
-        if($search == null){
-            $keranjangbelanja = DB::table('keranjangbelanja')->paginate($pagination);
-        }else{
-            $keranjangbelanja = DB::table('keranjangbelanja')
-            ->where('KodeBarang','like',"%".$search."%")
-            ->paginate($pagination);
-        }
-
-    return view('cart',['keranjangbelanja' => $keranjangbelanja]);
+    $search = $request->input('search'); 
+    $pagination = $request->query('pagination', 20);
+    
+    $query = DB::table('keranjangbelanja'); 
+    
+    if (!empty($search)) {
+        $query->where('KodeBarang', 'like', '%'.$search.'%');
+    }
+    
+    $keranjangbelanja = $query->paginate($pagination);
+    
+    return view('cart', [
+        'keranjangbelanja' => $keranjangbelanja,
+        'search' => $search 
+    ]);
     }
 
     public function add(){
 
-	return view('addCart');
+	return view('add');
     }
 
     public function store (Request $request) {
@@ -37,13 +41,13 @@ class CartController extends Controller
             'Jumlah' => $request->Jumlah,
             'Harga' => $request->Harga
         ]);
-        return redirect('/cart');
+        return redirect('/');
 
     }
 
     public function edit($ID) {
         $keranjangbelanja = DB::table('keranjangbelanja')->where('ID', $ID)->get();
-    return view('editCart',['keranjangbelanja' => $keranjangbelanja]);
+    return view('edit',['keranjangbelanja' => $keranjangbelanja]);
     }
 
     public function update(Request $request){
@@ -52,11 +56,11 @@ class CartController extends Controller
             'Jumlah' => $request->Jumlah,
             'Harga' => $request->Harga
         ]);
-    return redirect('/cart');
+    return redirect('/');
     }
     public function delete($ID){
         DB::table('keranjangbelanja')->where('ID',$ID)->delete();
 
-    return redirect('/cart');
+    return redirect('/');
     }
 }

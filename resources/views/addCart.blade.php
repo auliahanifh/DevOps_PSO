@@ -3,11 +3,11 @@
 @section('test1', 'Add Product')
 
 @section('link1')
-<a href="/cart"> Back</a>
+<a href="/"> Back</a>
 @endsection
 
 @section('konten')
-	<form action="/cart/store" method="POST">
+	<form action="/store" method="POST">
 		{{ csrf_field() }}
 
         <form>
