@@ -1,10 +1,6 @@
-name: Laravel CI/CD
+name: Laravel CI
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+on: [push, pull_request]
 
 jobs:
   laravel-tests:
@@ -40,6 +36,13 @@ jobs:
 
     - name: Generate app key
       run: php artisan key:generate
+
+    - name: Set Laravel APP_URL
+      run: |
+        sed -i 's|APP_URL=.*|APP_URL=http://localhost|' .env
+        sed -i 's|DB_HOST=.*|DB_HOST=127.0.0.1|' .env
+        sed -i 's|DB_DATABASE=.*|DB_DATABASE=trial_laravel|' .env
+        sed -i 's|DB_USERNAME=.*|DB_USERNAME=root|' .env
 
     - name: Run migrations
       run: php artisan migrate --force
