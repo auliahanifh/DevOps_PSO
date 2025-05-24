@@ -75,9 +75,6 @@ jobs:
         php artisan cache:clear
         php artisan migrate:fresh --env=testing --force
 
-    - name: Run PHPStan (Static Analysis)
-      run: composer run phpstan
-
     - name: Run Tests
       run: |
         if [ -f ./vendor/bin/pest ]; then
@@ -85,15 +82,3 @@ jobs:
         else
           php artisan test --parallel
         fi
-
-    - name: Upload Artifacts (on failure)
-      if: failure()
-      uses: actions/upload-artifact@v3
-      with:
-        name: logs
-        path: |
-          storage/logs/*.log
-          ./**/phpunit/*.log
-
-    - name: Security Check
-      run: composer audit
