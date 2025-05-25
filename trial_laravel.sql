@@ -20,9 +20,9 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `trial_laravel` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
-GRANT ALL PRIVILEGES ON `trial_laravel`.* TO 'root'@'localhost' IDENTIFIED BY '' WITH GRANT OPTION;
-GRANT ALL PRIVILEGES ON `trial_laravel`.* TO ''@'localhost' WITH GRANT OPTION;
-GRANT ALL PRIVILEGES ON `trial_laravel`.* TO '*'@'%' IDENTIFIED BY '' WITH GRANT OPTION;
+-- GRANT ALL PRIVILEGES ON `trial_laravel`.* TO 'root'@'localhost' IDENTIFIED BY '' WITH GRANT OPTION;
+-- GRANT ALL PRIVILEGES ON `trial_laravel`.* TO ''@'localhost' WITH GRANT OPTION;
+-- GRANT ALL PRIVILEGES ON `trial_laravel`.* TO '*'@'%' IDENTIFIED BY '' WITH GRANT OPTION;
 
 USE `trial_laravel`;
 --
