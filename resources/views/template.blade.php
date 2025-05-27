@@ -12,10 +12,9 @@
 <body>
     <nav class="navbar navbar-expand-sm">
         <div class="container-fluid">
-          <!-- Links -->
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/">Home</a>
+              <a class="nav-link" href="{{ route('cart') }}">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Logs</a>

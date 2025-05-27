@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,9 +13,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [SessionController::class,'index'])->name('index');
+Route::get('/login', [SessionController::class,'login'])->name('login');
+Route::post('/login', [SessionController::class,'login'])->name('login.post');
+Route::get('/logout', [SessionController::class,'logout'])->name('logout');
 
-use App\Http\Controllers\CartController;
-Route::get('/', [CartController::class, 'index']);
+Route::get('/cart', 'App\Http\Controllers\CartController@index');
 Route::get('/add', 'App\Http\Controllers\CartController@add');
 Route::post('/store', 'App\Http\Controllers\CartController@store');
 Route::get('/edit/{kode}', 'App\Http\Controllers\CartController@edit');
