@@ -15,7 +15,7 @@
           <!-- Links -->
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="http://127.0.0.1:8000/">Home</a>
+              <a class="nav-link" href="http://localhost/">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Logs</a>
