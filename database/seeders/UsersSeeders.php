@@ -20,8 +20,8 @@ class UsersSeeders extends Seeder
             [
                 'email' => 'admin@laravel.com',
                 'password'=> Hash::make('test123'),
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created' => now(),
+                'updated' => now(),
             ],
         ]);
     }

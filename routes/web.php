@@ -13,11 +13,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [SessionController::class,'index'])->name('index');
-Route::post('/login', [SessionController::class,'login'])->name('login.post');
-Route::get('/logout', [SessionController::class,'logout'])->name('logout');
 
-Route::get('/cart', 'App\Http\Controllers\CartController@index');
+Route::get('/', [SessionController::class, 'index'])->name('index');
+Route::post('/login', [SessionController::class, 'login'])->name('login');
+Route::get('/cart', [CartController::class, 'index'])->name('cart'); // view after login
+Route::post('/logout', [SessionController::class, 'logout'])->name('logout');
+
 Route::get('/add', 'App\Http\Controllers\CartController@add');
 Route::post('/store', 'App\Http\Controllers\CartController@store');
 Route::get('/edit/{kode}', 'App\Http\Controllers\CartController@edit');
