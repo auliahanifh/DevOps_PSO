@@ -33,7 +33,4 @@ class SessionController extends Controller
         Auth::logout();
         return redirect()->route('index')->with('success', 'Logout successful');
     }
-    function register(){
-        return view("session/register");
-    }
 }

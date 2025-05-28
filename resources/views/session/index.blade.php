@@ -38,7 +38,6 @@
                             <div class="d-grid gap-2">
                                 <button type="submit" name="login" class="btn btn-success">Login</button>
                             </div>
-                            <p class="mt-3 mb-0 text-center"><a href="login.html">Forgot Password?</a></p>
                         </form>
                     </div>
                 </div>
