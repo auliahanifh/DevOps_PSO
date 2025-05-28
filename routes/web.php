@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', [SessionController::class, 'index'])->name('index');
 Route::post('/login', [SessionController::class, 'login'])->name('login');
 Route::get('/cart', [CartController::class, 'index'])->name('cart'); // view after login

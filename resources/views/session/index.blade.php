@@ -28,13 +28,14 @@
                     <div class="card-body p-4">
                         <form action="{{ route('login') }}" method="POST">
                             @csrf
+                        <form action="/cart" method="POST">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" value="{{ Session::get('email')}}" class="form-control" id="email" name="email" required>
                             </div>
                             <div class="mb-3">
                                 <label for="password_1" class="form-label">Password</label>
-                                <input type="password" value="{{ Session::get('password')}}" class="form-control" id="password_1" name="password" required>
+                                <input type="password" value="{{ Session::get('password')}}" class="form-control" id="password_1" name="password_1" required
                             </div>
                             <div class="d-grid gap-2">
                                 <button type="submit" name="login" class="btn btn-success">Login</button>
