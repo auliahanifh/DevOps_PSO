@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `Email` varchar(25) NOT NULL,
   `Password` varchar(16) NOT NULL,
   `Created` varchar(50) NOT NULL,
-  `Updated` varchar(50) NOT NULL,
+  `Updated` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 ALTER TABLE `Users`
