@@ -1,0 +1,55 @@
+server {
+        server_name _;
+        listen 80;
+#        listen  443 ssl;
+#        ssl_certificate /etc/nginx/ssl/Certificate.crt;
+#        ssl_certificate_key /etc/nginx/ssl/Private.key;
+        client_max_body_size 20M;
+
+        gzip on;
+        gzip_types text/plain text/css text/xml text/javascript application/javascript application/json;
+        gzip_proxied no-cache no-store private expired auth;
+        gzip_vary on;
+        gunzip on;
+#        add_header 'Content-Security-Policy' 'upgrade-insecure-requests';
+#        server_tokens off;
+#        more_clear_headers 'Server';
+
+        root /var/www/html/public/;
+        index index.php index.html index.htm;
+        location / {
+                autoindex on;
+                gzip_static on;
+                # try_files $uri $uri/ /index.php?$query_string;
+                try_files $uri $uri/ =404;
+        }
+
+#        location ~*  \.(jpg|jpeg|png|gif|ico|css|js)$ {
+#                expires 7d;
+#        }
+
+        location ~ \.php($|/.+) {
+                include php.conf.d/php.default.conf;
+        }
+        location ~ /\.envconfig {
+                deny all;
+                return 404;
+        }
+        location ~ /\.env {
+                deny all;
+                return 404;
+        }
+        location ~ /\.git {
+                deny all;
+                return 404;
+        }
+        location ~ /\.config {
+                deny all;
+                return 404;
+        }
+        location ~* {
+                add_header X-Robots-Tag "noindex, follow" always;
+                try_files $uri $uri/ /index.php?$query_string;
+                }
+
+}
