@@ -17,10 +17,10 @@
               <a class="nav-link" href="{{ route('cart') }}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Logs</a>
+              <a class="nav-link" href="#">Setting</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Setting</a>
+                <a class="nav-link" href="{{ route('logout') }}">Logout</a>
               </li>
           </ul>
         </div>

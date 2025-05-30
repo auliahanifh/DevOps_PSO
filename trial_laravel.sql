@@ -123,10 +123,10 @@ COMMIT;
 
 CREATE TABLE IF NOT EXISTS `Users` (
   `ID` int(11) NOT NULL,
-  `Email` varchar(25) NOT NULL,
-  `Password` varchar(16) NOT NULL,
-  `Created` varchar(50) NOT NULL,
-  `Updated` varchar(50) NOT NULL
+  `Email` varchar(255) NOT NULL,
+  `Password` varchar(255) NOT NULL,
+  `Created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 ALTER TABLE `Users`

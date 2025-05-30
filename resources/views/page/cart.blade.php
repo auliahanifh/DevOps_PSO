@@ -30,7 +30,6 @@
             <th>Product Code</th>
             <th>Amount</th>
             <th>Price</th>
-            <th>Total</th>
             <th>Action</th>
         </tr>
         @foreach($keranjangbelanja as $cart)
@@ -40,9 +39,6 @@
             <td>{{ $cart->Jumlah }}</td>
             <td>
                 Rp{{ number_format($cart->Harga, 0, '.', ',') }}
-            </td>
-            <td>
-                Rp{{ number_format($cart->Jumlah * $cart->Harga) }}
             </td>
             <td class="text-left">
                 <a href="/edit/{{ $cart->ID }}" class="btn btn-info btn-icon">Edit</a>
