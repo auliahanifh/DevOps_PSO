@@ -123,11 +123,14 @@ COMMIT;
 
 CREATE TABLE IF NOT EXISTS `Users` (
   `ID` int(11) NOT NULL,
-  `Email` varchar(25) NOT NULL,
-  `Password` varchar(16) NOT NULL,
-  `Created` varchar(50) NOT NULL,
-  `Updated` varchar(50) NOT NULL
+  `Email` varchar(255) NOT NULL,
+  `Password` varchar(255) NOT NULL,
+  `Created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `Users` (`ID`, `Email`, `Password`, `Created`, `Updated`) VALUES
+(1, 'admin@ex.com', '$2y$10$e0j1Z5z8Q3b7f4d9a1b2eO6k5l3m8n9o0p1q2r3s4t5u6v7w8x9y0z', NOW(), NOW());
 
 ALTER TABLE `Users`
   ADD PRIMARY KEY (`ID`);

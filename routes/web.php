@@ -13,10 +13,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', [SessionController::class, 'index'])->name('index');
 Route::post('/login', [SessionController::class, 'login'])->name('login');
-Route::get('/cart', [CartController::class, 'index'])->name('cart'); // view after login
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('/logout', [SessionController::class, 'logout'])->name('logout');
 
 Route::get('/add', 'App\Http\Controllers\CartController@add');

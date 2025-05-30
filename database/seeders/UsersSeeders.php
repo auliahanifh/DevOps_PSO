@@ -18,7 +18,7 @@ class UsersSeeders extends Seeder
     {
         DB::table("users")->insert([
             [
-                'email' => 'admin@laravel.com',
+                'email' => 'admin@ex.com',
                 'password'=> Hash::make('test123'),
                 'created' => now(),
                 'updated' => now(),

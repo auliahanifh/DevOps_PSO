@@ -24,10 +24,11 @@ class SessionController extends Controller
         'password' => $request->password
         ];
 
-        if (Auth()->attempt($loginData)) {
-            return redirect()->route('cart')->with('success', 'Login successful');
+        if (Auth::attempt($loginData)) {
+            $request->session()->regenerate();
+            return redirect()->intended('/cart')->with('success', 'Login successful');
         } else {
-            return redirect()->back()->withErrors(['email' => 'Invalid email or password']);
+            return back()->withInput()->withErrors(['email' => 'Invalid email or password']);
         }    
     }
     function logout(Request $request){
