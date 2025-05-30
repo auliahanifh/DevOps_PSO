@@ -26,14 +26,22 @@
                         <h4 class="mb-0">Product Data Console</h4>
                     </div>
                     <div class="card-body p-4">
-                        <form action="/cart" method="POST">
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+
+                            @if($errors->any())
+                                <div class="alert alert-danger">
+                                    {{ $errors->first() }}
+                                </div>
+                            @endif
+
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" value="{{ Session::get('email')}}" class="form-control" id="email" name="email" required>
+                                <input type="email" value="{{ old('email')}}" class="form-control" id="email" name="email" required>
                             </div>
                             <div class="mb-3">
-                                <label for="password_1" class="form-label">Password</label>
-                                <input type="password" value="{{ Session::get('password')}}" class="form-control" id="password_1" name="password_1" required>
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
                             </div>
                             <div class="d-grid gap-2">
                                 <button type="submit" name="login" class="btn btn-success">Login</button>
