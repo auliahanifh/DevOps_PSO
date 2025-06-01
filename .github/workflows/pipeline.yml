@@ -5,6 +5,8 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  release:
+    types: [published]
 
 jobs:
   laravel-tests:
@@ -79,6 +81,15 @@ jobs:
           php artisan test --parallel
         fi
 
+  build:
+    name: Deploy with Terraform
+    runs-on: ubuntu-latest
+    needs: laravel-tests
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
     - name: Configure Environment for Deployment
       run: |
         sed -i 's|APP_URL=.*|APP_URL=http://localhost|' .env
@@ -104,3 +115,36 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/devops-pso:laravel-app
+
+  deployment:
+    name: Deploy with Terraform
+    runs-on: ubuntu-latest
+    needs: laravel-tests
+    if: github.event_name == 'release'
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.12.1
+
+      - name: Terraform Init
+        working-directory: ./terraform
+        run: terraform init
+
+      - name: Terraform Apply
+        working-directory: ./terraform
+        env:
+          TF_VAR_server_ip: ${{ secrets.SERVER_IP }}
+          TF_VAR_username: ${{ secrets.SSH_USERNAME }}
+          TF_VAR_password: ${{ secrets.SSH_PASSWORD }}
+          TF_VAR_swarm_advertise_addr: ${{ secrets.SWARM_ADVERTISE_ADDR }}
+        run: |
+          terraform apply -auto-approve \
+            -var="server_ip=${TF_VAR_server_ip}" \
+            -var="username=${TF_VAR_username}" \
+            -var="password=${TF_VAR_password}" \
+            -var="swarm_advertise_addr=${TF_VAR_swarm_advertise_addr}"
