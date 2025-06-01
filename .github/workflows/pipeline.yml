@@ -90,6 +90,11 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v3
 
+    - name: Copy Environment Files
+      run: |
+        cp .env.example .env
+        cp .env.example .env.testing
+
     - name: Configure Environment for Deployment
       run: |
         sed -i 's|APP_URL=.*|APP_URL=http://localhost|' .env
