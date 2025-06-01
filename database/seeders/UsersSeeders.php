@@ -20,8 +20,8 @@ class UsersSeeders extends Seeder
             [
                 'email' => 'admin@ex.com',
                 'password'=> Hash::make('test123'),
-                'created' => now(),
-                'updated' => now(),
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
         ]);
     }
