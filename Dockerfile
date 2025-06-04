@@ -14,6 +14,9 @@ RUN sudo -u www-data composer install --no-progress --prefer-dist --optimize-aut
 # Generate Key
 RUN php artisan key:generate
 
+# Change Permission Logs
+RUN chmod -R 777 storage/logs
+
 # Configure NGINX
 COPY docker/nginx/default /etc/nginx/sites-enabled/default
 
