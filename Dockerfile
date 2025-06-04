@@ -14,6 +14,12 @@ RUN sudo -u www-data composer install --no-progress --prefer-dist --optimize-aut
 # Generate Key
 RUN php artisan key:generate
 
+# Migrate & Seed Database
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
+
 # Change Permission Logs
 RUN chmod -R 777 storage/logs
 
