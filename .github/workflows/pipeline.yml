@@ -72,17 +72,7 @@ jobs:
         php artisan config:clear
         php artisan cache:clear
         mysql -h 127.0.0.1 -uroot < trial_laravel.sql
-        
-    - name: Run migrations
-      run: | 
-        php artisan migrate
-        php artisan migrate --env=testing
-      
-    - name: Seed the database
-      run: | 
-        php artisan db:seed
-        php artisan db:seed --env=testing
-      
+              
     - name: Run Tests
       run: |
         if [ -f ./vendor/bin/pest ]; then

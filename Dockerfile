@@ -14,6 +14,9 @@ RUN sudo -u www-data composer install --no-progress --prefer-dist --optimize-aut
 # Generate Key
 RUN php artisan key:generate
 
+# Database Migration & Seed
+RUN php artisan migrate --seed
+
 # Change Permission Logs
 RUN chmod -R 777 storage/logs
 
