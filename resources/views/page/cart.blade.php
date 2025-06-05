@@ -27,7 +27,7 @@
     <table class="table table-striped table-hover">
         <tr>
             <th>ID</th>
-            <th>Product Code</th>
+            <th>Code</th>
             <th>Amount</th>
             <th>Price</th>
             <th>Action</th>
@@ -41,8 +41,8 @@
                 Rp{{ number_format($cart->Harga, 0, '.', ',') }}
             </td>
             <td class="text-left">
-                <a href="/edit/{{ $cart->ID }}" class="btn btn-info btn-icon">Edit</a>
-                <a href="/delete/{{ $cart->ID }}" class="btn btn-danger">Delete</a>
+                <a href="/edit/{{ $cart->ID }}" class="btn btn-warning btn-icon"><i class="fi fi-rr-pen-square"></i></a>
+                <a href="/delete/{{ $cart->ID }}" class="btn btn-danger btn-icon"><i class="fi fi-rr-trash"></i></a>
             </td>
         </tr>
         @endforeach
