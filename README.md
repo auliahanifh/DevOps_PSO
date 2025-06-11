@@ -71,7 +71,7 @@ DevOps_PSO have been using pipeline CI/CD with GitHub Actions. Here are the brea
    - If all tests pass, the pipeline builds a new Docker image for the application.
    - The docker image is pushed to the Docker Registry using secure credentials stored in GitHub Secrets.
 
-4. **Deployment Otomatis**
+4. **Automated Deployment**
    - Deployment is triggered automatically when a release is published.
    - Terraform is used to provision infrastructure and deploy the application to the server, based on Infrastructure as Code (IaC) configuration.
 > For more detailed information, take a look at [`pipeline.yml`](.github/workflows/pipeline.yml) file.
