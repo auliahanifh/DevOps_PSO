@@ -56,6 +56,28 @@ docker run -p 8080:80 devops_pso_app
 
 ---
 
+## 🧑‍💻 CI/CD Workflow
+
+DevOps_PSO have been using pipeline CI/CD with GitHub Actions. Here are the breakdown the pipeline workflow when committed codes to the main branch in the repository when releasing:
+
+1. **Automated Testing**
+   - Every push, pull request, or release to the `main` branch triggers the workflow.
+   - The system sets up the environment (PHP, Node.js, and MySQL database).
+   - Dependencies and environment variables are configured automatically.
+   - The database is migrated and seeded for testing.
+   - All testing are run in paralel for ensure the application works correctly.
+
+2. **Build Docker Image**
+   - If all tests pass, the pipeline builds a new Docker image for the application.
+   - The docker image is pushed to the Docker Registry using secure credentials stored in GitHub Secrets.
+
+4. **Deployment Otomatis**
+   - Deployment is triggered automatically when a release is published.
+   - Terraform is used to provision infrastructure and deploy the application to the server, based on Infrastructure as Code (IaC) configuration.
+> For more detailed information, take a look at [`pipeline.yml`](.github/workflows/pipeline.yml) file.
+
+---
+
 ## 📝 Additional Notes
 
 - **Environment Variables:** Review `.env.example` or configuration files to set up any required environment variables.
