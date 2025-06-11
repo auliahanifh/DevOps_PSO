@@ -76,6 +76,8 @@ DevOps_PSO have been using pipeline CI/CD with GitHub Actions. Here are the brea
    - Terraform is used to provision infrastructure and deploy the application to the server, based on Infrastructure as Code (IaC) configuration.
 > For more detailed information, take a look at [`pipeline.yml`](.github/workflows/pipeline.yml) file.
 
+---
+
 ## 📝 Additional Notes
 
 - **Environment Variables:** Review `.env.example` or configuration files to set up any required environment variables.
