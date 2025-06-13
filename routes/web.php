@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\CartController;
+use Bugsnag\BugsnagLaravel\Facades\Bugsnag;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +26,8 @@ Route::get('/edit/{kode}', 'App\Http\Controllers\CartController@edit');
 Route::post('/update', 'App\Http\Controllers\CartController@update');
 Route::get('/delete/{kode}','App\Http\Controllers\CartController@delete');
 Route::get('/search','App\Http\Controllers\CartController@search');
+
+Route::get('/bugsnag-test', function () {
+    Bugsnag::notifyException(new RuntimeException("Test error"));
+    return 'Test error sent to Bugsnag!';
+});
