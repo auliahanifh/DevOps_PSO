@@ -8,6 +8,10 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
   <script src="/js/solid.js"></script>
+  <script type="module">
+    import BugsnagPerformance from '//d2wy8f7a9ursnm.cloudfront.net/v1/bugsnag-performance.min.js';
+    BugsnagPerformance.start({ apiKey: '32e1883311b44e1954b30cb00c62178a' });
+  </script>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm">
