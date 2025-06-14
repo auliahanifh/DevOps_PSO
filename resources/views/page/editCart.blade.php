@@ -3,7 +3,7 @@
 @section('test1', 'Edit Product')
 
 @section('link1')
-<a href="/">Back</a>
+<a href="/cart">Back</a>
 @endsection
 
 @section('konten')
