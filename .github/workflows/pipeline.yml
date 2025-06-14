@@ -152,7 +152,7 @@ jobs:
             -var="username=${TF_VAR_username}" \
             -var="password=${TF_VAR_password}" \
             -var="swarm_advertise_addr=${TF_VAR_swarm_advertise_addr}"
-monitoring:
+  monitoring:
     name: Report Release to Bugsnag
     runs-on: ubuntu-latest
     needs: [deployment]
