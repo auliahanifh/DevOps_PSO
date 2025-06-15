@@ -10,7 +10,7 @@ class MetricTest extends TestCase
     {
         $response = $this->get('/metrics');
         $response->assertStatus(200);
-        $response->assertHeader('Content-Type', 'text/plain; version=0.0.4'); 
+        $this->assertStringContainsString('text/plain; version=0.0.4', $response->headers->get('Content-Type')); 
         $this->assertStringContainsString('# HELP', $response->getContent()); 
     }
 }
