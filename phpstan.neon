@@ -8,9 +8,9 @@ parameters:
         - routes
         - database
         - config
+        - tests
 
     excludePaths:
-        - tests
         - bootstrap
         - storage
         - public
