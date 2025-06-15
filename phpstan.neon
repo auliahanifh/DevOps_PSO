@@ -16,5 +16,5 @@ parameters:
         - public
         - vendor
 
-    checkMissingVarTagTypehint: false
+    checkMissingVarTagTypehint: true
     checkUninitializedProperties: true
