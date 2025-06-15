@@ -6,11 +6,11 @@ use Tests\TestCase;
 
 class MetricTest extends TestCase
 {
-    public function testMetricsRouteIsAccessible()
+    public function testMetricsRouteIsAccessible(): void
     {
         $response = $this->get('/metrics');
         $response->assertStatus(200);
-        $this->assertStringContainsString('text/plain; version=0.0.4', $response->headers->get('Content-Type')); 
-        $this->assertStringContainsString('# HELP', $response->getContent()); 
+        $this->assertStringContainsString('text/plain; version=0.0.4', (string) $response->headers->get('Content-Type')); 
+        $this->assertStringContainsString('# HELP', (string) $response->getContent()); 
     }
 }

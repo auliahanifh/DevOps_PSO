@@ -8,7 +8,7 @@ use Prometheus\CollectorRegistry;
 
 class PrometheusController extends Controller
 {
-        public function metrics(CollectorRegistry $registry)
+        public function metrics(CollectorRegistry $registry): Response
     {
         $renderer = new RenderTextFormat();
         $metrics = $registry->getMetricFamilySamples();
