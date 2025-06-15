@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Bugsnag\BugsnagLaravel\Facades\Bugsnag;
-use RuntimeException;
 
 class CartController extends Controller
 {
@@ -71,7 +69,4 @@ class CartController extends Controller
 
         return redirect('/cart');
     }
-
 }
-
-Bugsnag::notifyException(new RuntimeException("Test error"));

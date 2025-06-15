@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Bugsnag\BugsnagLaravel\Facades\Bugsnag;
-use RuntimeException;
 
 class SessionController extends Controller
 {
@@ -34,5 +32,3 @@ class SessionController extends Controller
         return redirect()->route('index')->with('success', 'Logout successful');
     }
 }
-
-Bugsnag::notifyException(new RuntimeException("Test error"));
