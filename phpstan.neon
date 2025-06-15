@@ -1,0 +1,27 @@
+includes:
+    - vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+    level: max
+    paths:
+        - app
+        - routes
+        - database
+        - config
+
+    excludePaths:
+        - tests
+        - bootstrap
+        - storage
+        - public
+        - vendor
+
+    checkMissingVarTagTypehint: false
+    checkUninitializedProperties: true
+
+    ignoreErrors:
+        - '#Access to an undefined property .*#'
+        - '#Call to an undefined method .*#'
+        # Tambahkan jika ingin abaikan error typehint:
+        - identifier: missingType.iterableValue
+        - identifier: missingType.generics
