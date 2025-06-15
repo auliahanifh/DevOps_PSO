@@ -8,15 +8,17 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class PassResetController extends Controller
 {
-    public function showForgotForm()
+    public function showForgotForm(): View
     {
         return view('session.req-forgot-pass');
     }
 
-    public function sendResetLinkEmail(Request $request)
+    public function sendResetLinkEmail(Request $request): RedirectResponse
     {
         $request->validate(['email' => 'required|email']);
 
@@ -25,17 +27,17 @@ class PassResetController extends Controller
         );
 
         return $status === Password::RESET_LINK_SENT
-            ? back()->with(['status' => __($status)])
-            : back()->withErrors(['email' => __($status)]);
+            ? back()->with(['status' => __((string)$status)])
+            : back()->withErrors(['email' => __((string)$status)]);
     }
 
     // Reset password form (sebelum login)
-    public function showResetForm($token)
+    public function showResetForm(string $token): View
     {
         return view('session.reset-pass', ['token' => $token]);
     }
 
-    public function resetPassword(Request $request)
+    public function resetPassword(Request $request): RedirectResponse
     {
         $request->validate([
             'token' => 'required',
@@ -45,28 +47,30 @@ class PassResetController extends Controller
 
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
-            function ($user, $password) {
-                $user->forceFill([
-                    'password' => Hash::make($password),
-                    'remember_token' => Str::random(60),
-                ])->save();
+            function ($user, $password){
+                if ($user !== null && is_string($password)) {
+                    $user->forceFill([
+                        'password' => Hash::make($password),
+                        'remember_token' => Str::random(60),
+                    ])->save();
 
-                event(new PasswordReset($user));
+                    event(new PasswordReset($user));
+                }
             }
         );
-
-        return $status === Password::PASSWORD_RESET
-            ? redirect()->route('login')->with('status', __($status))
-            : back()->withErrors(['email' => [__($status)]]);
+        $statusMessage = is_string($status) ? __($status) : '';
+        return $status === Password::RESET_LINK_SENT
+            ? back()->with(['status' => $statusMessage])
+            : back()->withErrors(['email' => $statusMessage]);
     }
 
-    //Ganti password setelah login
-    public function showChangePasswordForm()
+    // Ganti password setelah login
+    public function showChangePasswordForm(): View
     {
         return view('session.reset-pass'); 
     }
 
-    public function changePassword(Request $request)
+    public function changePassword(Request $request): RedirectResponse
     {
         $request->validate([
             'current_password' => 'required',
@@ -75,12 +79,14 @@ class PassResetController extends Controller
 
         $user = Auth::user();
 
-        if (!Hash::check($request->current_password, $user->password)) {
+        if ($user === null || !is_string($request->current_password) || !Hash::check($request->current_password, $user->password)) {
             return back()->withErrors(['current_password' => 'Current password is incorrect']);
         }
 
-        $user->password = Hash::make($request->password);
-        $user->save();
+        if (is_string($request->password)) {
+            $user->password = Hash::make($request->password);
+            $user->save();
+        }
 
         return redirect()->route('password.change')->with('status', 'Successfully changed password');
     }
