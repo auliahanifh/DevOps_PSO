@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Forgot Password</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -23,31 +23,31 @@
             <div class="col-md-8 col-lg-6">
                 <div class="card shadow-sm mx-auto">
                     <div class="card-header bg-success text-white text-center">
-                        <h4 class="mb-0">Product Data Console</h4>
+                        <h4 class="mb-0">Forgot Password</h4>
                     </div>
                     <div class="card-body p-4">
-                    
-                        <form method="POST" action="{{ route('login') }}">
+                        <form method="POST" action="{{ route('password.email') }}">
                             @csrf
+
                             @if($errors->any())
                                 <div class="alert alert-danger">
                                     {{ $errors->first() }}
                                 </div>
                             @endif
 
+                            @if(session('status'))
+                                <div class="alert alert-success">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
+
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" value="{{ old('email') }}" class="form-control" id="email" name="email" required>
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" value="{{ old('email') }}" class="form-control" id="email" name="email" required autofocus>
                             </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
-                            </div>
+
                             <div class="d-grid gap-2">
-                                <button type="submit" name="login" class="btn btn-success">Login</button>
-                            </div>
-                            <div class="text-center mt-2">
-                                <a href="{{ route('password.request') }}">Forgot your password?</a>
+                                <button type="submit" class="btn btn-success">Send Reset Link</button>
                             </div>
                         </form>
                     </div>

@@ -17,7 +17,7 @@ class LoginTest extends TestCase
         $this->artisan('db:seed', ['--class' => 'UserSeeder']);
     }
 
-    public function test_login()
+    public function test_login(): void
     {
         $response = $this->post('/login', [
             'email' => 'user1@example.com', 
@@ -28,7 +28,7 @@ class LoginTest extends TestCase
         $this->assertAuthenticated();
     }
 
-    public function test_logout()
+    public function test_logout(): void
     {
         $response = $this->get('/logout');
 

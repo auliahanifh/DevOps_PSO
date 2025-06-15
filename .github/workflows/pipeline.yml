@@ -80,6 +80,10 @@ jobs:
         else
           php artisan test --parallel
         fi
+    - name: Run Static Analysis with PHPStan
+      run: |
+        composer require --dev larastan/larastan
+        vendor/bin/phpstan analyse --memory-limit=1G --error-format=table
 
   build:
     name: Build Docker Image

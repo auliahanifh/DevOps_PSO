@@ -1,0 +1,20 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    level: max
+    paths:
+        - app
+        - routes
+        - database
+        - config
+        - tests
+
+    excludePaths:
+        - bootstrap
+        - storage
+        - public
+        - vendor
+
+    checkMissingVarTagTypehint: true
+    checkUninitializedProperties: true

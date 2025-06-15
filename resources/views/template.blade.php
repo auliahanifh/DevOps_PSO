@@ -17,7 +17,7 @@
               <a class="nav-link" href="{{ route('cart') }}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Setting</a>
+              <a class="nav-link" href="{{ route('setting') }}">Setting</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}">Logout</a>
