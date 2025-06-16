@@ -6,11 +6,13 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    environment:
-      DB_HOST: 
-      DB_USERNAME: devops-pso321
-      DB_PASSWORD: trial_laravel
-      DB_DATABASE: 
+    # environment:
+    #   DB_HOST: ${DB_HOST}
+    #   DB_USERNAME: ${DB_USERNAME}
+    #   DB_PASSWORD: ${DB_PASSWORD}
+    #   DB_DATABASE: ${DB_DATABASE}
+    env_file:
+      - .env
     depends_on:
       - mysql
     deploy:
