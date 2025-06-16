@@ -50,7 +50,7 @@ resource "null_resource" "remote_deploy" {
 
   provisioner "remote-exec" {
     inline = [
-      "echo 'DB_HOST=${var.db_host}' >> /home/devops-pso/.env",
+      "echo 'DB_HOST=${var.db_host}' > /home/devops-pso/.env",
       "echo 'DB_USERNAME=${var.db_username}' >> /home/devops-pso/.env",
       "echo 'DB_PASSWORD=${var.db_password}' >> /home/devops-pso/.env",
       "echo 'DB_DATABASE=${var.db_database}' >> /home/devops-pso/.env",
