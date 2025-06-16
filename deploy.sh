@@ -42,6 +42,8 @@ if [ ! -f "$COMPOSE_FILE" ]; then
     exit 1
 fi
 
+echo "[INFO] Menggunakan file .env yang sudah ada."
+
 echo "[INFO] Meng-update stack '$STACK_NAME' dengan file $COMPOSE_FILE..."
 docker stack deploy -c "$COMPOSE_FILE" "$STACK_NAME"
 

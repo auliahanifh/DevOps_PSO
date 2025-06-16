@@ -50,6 +50,13 @@ resource "null_resource" "remote_deploy" {
 
   provisioner "remote-exec" {
     inline = [
+      "bash -c 'cat <<EOF > /home/devops-pso/.env
+      DB_HOST=${var.db_host}
+      DB_USERNAME=${var.db_username}
+      DB_PASSWORD=${var.db_password}
+      DB_DATABASE=${var.db_database}
+      EOF'"
+      ,
       "export SWARM_ADVERTISE_ADDR=${var.swarm_advertise_addr}",
       "chmod +x /home/deploy.sh",
       "/home/deploy.sh"

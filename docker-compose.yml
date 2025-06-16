@@ -6,6 +6,11 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    environment:
+      DB_HOST: 
+      DB_USERNAME: devops-pso321
+      DB_PASSWORD: trial_laravel
+      DB_DATABASE: 
     depends_on:
       - mysql
     deploy:
@@ -22,7 +27,7 @@ services:
       MYSQL_DATABASE: trial_laravel
     volumes:
       - db_data:/var/lib/mysql
-      - ./trial_laravel.sql:/docker-entrypoint-initdb.d/trial_laravel.sql:ro
+      # - ./trial_laravel.sql:/docker-entrypoint-initdb.d/trial_laravel.sql:ro
     command: --default-authentication-plugin=mysql_native_password
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-pdevops-pso321"]
