@@ -3,26 +3,12 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Ensi\LaravelPrometheus\Prometheus;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
-
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
+    public function boot(): void {
+    Prometheus::counter(name: 'http_requests_count')->labels(labels: ['endpoint', 'code']);
+    Prometheus::summary(name: 'http_requests_duration_seconds', maxAgeSeconds: 60, quantiles: [0.5, 0.95, 0.99]);
     }
 }

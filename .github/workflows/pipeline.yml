@@ -80,6 +80,7 @@ jobs:
         else
           php artisan test --parallel
         fi
+        
     - name: Run Static Analysis with PHPStan
       run: |
         composer require --dev larastan/larastan
