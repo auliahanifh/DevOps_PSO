@@ -1,0 +1,12 @@
+global:
+  scrape_interval: 10s
+  evaluation_interval: 10s
+
+scrape_configs:
+  - job_name: 'laravel_app'
+    static_configs:
+      - targets: ['206.189.40.123:80']
+    metrics_path: '/metrics'
+    basic_auth:
+      username: admin
+      password: verysecret
