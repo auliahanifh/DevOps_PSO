@@ -1,5 +1,10 @@
 FROM auliahanifh/devops-pso:base-php8.2
 
+# Install PHP extensions: redis and apcu
+RUN apt-get update && \
+    apt-get install -y php-redis php-apcu && \
+    docker-php-ext-enable redis apcu
+
 # Setup
 RUN rm -rf /var/www/html/*
 WORKDIR /var/www/html
