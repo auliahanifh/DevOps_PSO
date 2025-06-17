@@ -1,6 +1,6 @@
 ## 🚀 Overview
 
-**DevOps_PSO** is a robust, containerized PHP-based project designed for rapid local development and seamless DevOps workflow integration. The repository leverages Docker for consistent and reproducible environments, making it easy to spin up and hack on the application regardless of your host OS.
+**DevOps_PSO** is a laravel application for product management used by PT. XYZ
 
 ## 📦 Tech Stack
 
@@ -60,14 +60,19 @@ docker run -p 8080:80 devops_pso_app
 
 DevOps_PSO have been using pipeline CI/CD with GitHub Actions. Here are the breakdown the pipeline workflow when committed codes to the main branch in the repository when releasing:
 
-1. **Automatation Testing**
+1. **Automation Testing**
    - Every push, pull request, or release to the `main` branch triggers the workflow.
    - The system sets up the environment (PHP, Node.js, and MySQL database).
    - Dependencies and environment variables are configured automatically.
    - The database is migrated and seeded for testing.
    - All testing are run in paralel for ensure the application works correctly.
 
-2. **Build Docker Image**
+2. **Static Application Security Testing (SAST)**
+   - As part of the testing phase, Larastan is utilized for Static Application Security Testing (SAST).
+   - Larastan analyzes the PHP codebase without executing it, identifying potential code quality issues, bugs, and security vulnerabilities like insecure coding practices, unhandled exceptions, and potential SQL injection points.
+   - This static analysis helps catch issues early in the development cycle, improving code robustness and security.
+
+3. **Build Docker Image**
    - If all tests pass, the pipeline builds a new Docker image for the application.
    - The docker image is pushed to the Docker Registry using secure credentials stored in GitHub Secrets.
 
@@ -77,6 +82,23 @@ DevOps_PSO have been using pipeline CI/CD with GitHub Actions. Here are the brea
 > For more detailed information, take a look at [`pipeline.yml`](.github/workflows/pipeline.yml) file.
 
 ---
+
+## 📊 Monitoring
+
+**DevOps_PSO** integrates with Prometheus for application monitoring and Grafana for visualization.
+
+**Requirements for Monitoring**
+To anable To enable comprehensive monitoring, ensure the following are in place:
+- Laravel Prometheus Exporter: A Laravel package is required to expose application metrics. You'll need to find a package that fits your specific Laravel and PHP versions on ([Packagist](https://packagist.org/)). Search for "laravel prometheus" and choose a well-maintained package like ensi/laravel-prometheus or similar. Install it via Composer, here's the example:
+
+```bash
+composer require ensi/laravel-prometheus
+```
+Follow the package's documentation for configuration details, including publishing assets and setting up routes for metrics exposure.
+- **Redis Extension** : For optimal performance and data aggregation, ensure the Redis PHP extension is installed and enabled. This is crucial for collecting certain types of application metrics.
+- **APCU Extension**: The APCu (Alternative PHP Cache Userland) extension can be beneficial for caching and improving the performance of metric collection. Install and enable it for enhanced monitoring capabilities.
+- **Prometheus Setup**: Ensure your Prometheus configuration includes a scrape job targeting the metrics endpoint (e.g., /metrics) exposed by the Laravel application. The Prometheus server should have network access to your application.
+- **Grafana Setup**: Configure a Prometheus data source in Grafana pointing to your Prometheus server. Import or create Grafana dashboards to visualize the metrics collected from DevOps_PSO. Recommended metrics to visualize include request counts, error rates, response times, database query performance, and queue sizes.
 
 ## 📝 Additional Notes
 
