@@ -45,13 +45,6 @@
                                 <button type="submit" name="login" class="btn btn-success">Login</button>
                             </div>
                         </form>
-                        <form method="GET" action="{{ route('registerForm') }}">
-                            <div class="mb-3 mt-3">
-                                <div class="d-grid gap-2">
-                                    <button type="submit" name="register" class="btn btn-secondary">Doesn't have account? Sign Up</button>
-                                </div>
-                            </div>
-                        </form>
                         <div class="text-center mt-2">
                             <a href="{{ route('password.request') }}">Forgot your password?</a>
                         </div>
