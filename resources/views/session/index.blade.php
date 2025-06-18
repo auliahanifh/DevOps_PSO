@@ -44,9 +44,6 @@
                             <div class="d-grid gap-2">
                                 <button type="submit" name="login" class="btn btn-success">Login</button>
                             </div>
-                            <div class="text-center mt-2">
-                                <a href="{{ route('password.request') }}">Forgot your password?</a>
-                            </div>
                         </form>
                         <form method="GET" action="{{ route('registerForm') }}">
                             <div class="mb-3 mt-3">
@@ -55,6 +52,9 @@
                                 </div>
                             </div>
                         </form>
+                        <div class="text-center mt-2">
+                            <a href="{{ route('password.request') }}">Forgot your password?</a>
+                        </div>
                     </div>
                 </div>
             </div>
