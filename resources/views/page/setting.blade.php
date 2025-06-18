@@ -28,6 +28,19 @@
                     </a>
                 </div>
             </div>
+            <div class="card mt-3">
+            <div class="card-header bg-danger text-white">
+                Delete Account
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ route('account.delete') }}" onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger w-60">
+                        <i class="fi fi-rr-trash me-2"></i> Delete My Account
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 @endsection
