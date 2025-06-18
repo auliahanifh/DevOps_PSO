@@ -3,6 +3,7 @@
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PassResetController;
+use Ensi\LaravelPrometheus\Controllers\MetricsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/register', [SessionController::class, 'registerForm'])
+    ->name('registerForm')
+    ->middleware('guest');
+Route::post('/register', [SessionController::class, 'register'])
+    ->name('register')
+    ->middleware('guest');
+
 Route::get('/', [SessionController::class, 'index'])->name('index');
 Route::post('/login', [SessionController::class, 'login'])->name('login');
 Route::get('/cart', [CartController::class, 'index'])->name('cart')->middleware('auth');
@@ -46,9 +54,13 @@ Route::get('/setting', function () {
     return view('page.setting');
 })->name('setting')->middleware('auth');
 
+Route::delete('/account/delete', [SessionController::class, 'deleteAccount'])->name('account.delete')->middleware('auth');
+
 Route::get('/add', 'App\Http\Controllers\CartController@add');
 Route::post('/store', 'App\Http\Controllers\CartController@store');
 Route::get('/edit/{kode}', 'App\Http\Controllers\CartController@edit');
 Route::post('/update', 'App\Http\Controllers\CartController@update');
 Route::get('/delete/{kode}','App\Http\Controllers\CartController@delete');
 Route::get('/search','App\Http\Controllers\CartController@search');
+
+Route::get('/metrics', MetricsController::class) ->name('metrics');
