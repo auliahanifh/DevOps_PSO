@@ -33,7 +33,7 @@ class SessionController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make((string)$request->password),
         ]);
 
         Auth::login($user);
@@ -55,19 +55,24 @@ class SessionController extends Controller
         ]);
     }
 
-    public function deleteAccount(Request $request): RedirectResponse
-{
-    $user = Auth::user();
+public function deleteAccount(Request $request): RedirectResponse
+    {
 
-    Auth::logout();
+        $user = Auth::user();
 
-    $user->delete();
+        if ($user) { 
+            Auth::logout();
+            
+            $user->delete();
 
-    $request->session()->invalidate();
-    $request->session()->regenerateToken();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
 
-    return redirect('/')->with('success', 'Your account has been deleted successfully.');
-}
+            return redirect('/')->with('success', 'Your account has been deleted successfully.');
+        }
+
+        return redirect('/')->with('error', 'No authenticated user found for deletion.');
+    }
 
     public function logout(Request $request): RedirectResponse
     {
