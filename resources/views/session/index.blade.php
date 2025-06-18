@@ -26,7 +26,6 @@
                         <h4 class="mb-0">Product Data Console</h4>
                     </div>
                     <div class="card-body p-4">
-                    
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             @if($errors->any())
@@ -34,7 +33,6 @@
                                     {{ $errors->first() }}
                                 </div>
                             @endif
-
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" value="{{ old('email') }}" class="form-control" id="email" name="email" required>
@@ -48,6 +46,13 @@
                             </div>
                             <div class="text-center mt-2">
                                 <a href="{{ route('password.request') }}">Forgot your password?</a>
+                            </div>
+                        </form>
+                        <form method="GET" action="{{ route('registerForm') }}">
+                            <div class="mb-3 mt-3">
+                                <div class="d-grid gap-2">
+                                    <button type="submit" name="register" class="btn btn-secondary">Doesn't have account? Sign Up</button>
+                                </div>
                             </div>
                         </form>
                     </div>
