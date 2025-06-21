@@ -1,0 +1,40 @@
+version: '3.9'
+services:
+  node-exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: server-node-exporter
+    network_mode: host
+    pid: host
+    volumes:
+      - "/:/host:ro,rslave"
+    command:
+      - --path.rootfs=/host
+
+  prometheus:
+    image: prom/prometheus
+    container_name: server-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana
+    container_name: server-grafana
+    ports:
+      - "3456:3000"
+    volumes:
+      - data_grafana:/var/lib/grafana
+      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources:ro
+    environment:
+      - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-gajahterbang}
+      - GF_USERS_ALLOW_SIGN_UP=false
+#      - GF_INSTALL_PLUGINS=flant-statusmap-panel
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/server/server.json
+    restart: unless-stopped
+
+volumes:
+  data_grafana:
