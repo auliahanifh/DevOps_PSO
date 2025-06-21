@@ -5,15 +5,15 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['206.189.40.123:9090']
+      - targets: ['206.189.35.233:9090']
 
   - job_name: 'windows_exporter'
     static_configs:
-      - targets: ['206.189.40.123:9182']
+      - targets: ['206.189.35.233:9182']
 
   - job_name: 'laravel_app'
     static_configs:
-      - targets: ['206.189.40.123:80']
+      - targets: ['206.189.35.233:80']
     metrics_path: '/metrics'
     basic_auth:
       username: admin
